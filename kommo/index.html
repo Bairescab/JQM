@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kommo · Planes — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDE5D8;
+    --bg-cream: #F8F4EC;
+    --bg-warm: #E4D9C5;
+    --bg-deep: #1F1B17;
+    --ink: #1F1B17;
+    --ink-soft: #5A5147;
+    --ink-mute: #8B8170;
+    --accent: #5B6B47;
+    --accent-deep: #3F4B30;
+    --accent-soft: #C8D0B6;
+    --accent-glow: rgba(91,107,71,0.08);
+    --gift: #B8895C;
+    --gift-soft: #F0E2D0;
+    --rule: rgba(31,27,23,0.10);
+    --serif: 'Newsreader', 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .col { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .col-narrow { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+  /* HEADER */
+  .head {
+    padding: 72px 0 24px; text-align: center;
+  }
+  .head .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent-deep);
+    padding: 6px 14px; background: var(--bg-cream); border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .head .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .head h1 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5.5vw, 60px);
+    line-height: 1.05; letter-spacing: -0.015em; margin: 0 auto 18px; max-width: 820px;
+    font-variation-settings: "opsz" 72;
+  }
+  .head h1 em { font-style: italic; color: var(--accent); }
+  .head .lede {
+    font-size: 17px; color: var(--ink-soft); max-width: 660px; margin: 0 auto;
+  }
+
+  /* PRELUDE GRID — diferencia retail vs con nosotros */
+  .why {
+    margin: 56px auto 80px; max-width: 1100px;
+    background: var(--bg-cream); border: 1px solid var(--rule); border-radius: 18px;
+    padding: 36px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    align-items: start;
+  }
+  .why h3 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; margin: 0 0 14px; font-weight: 500;
+    color: var(--ink-mute);
+  }
+  .why .col-block + .col-block { border-left: 1px solid var(--rule); padding-left: 32px; }
+  .why .col-block.highlight h3 { color: var(--accent-deep); }
+  .why ul { margin: 0; padding-left: 18px; }
+  .why li { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 8px; line-height: 1.55; }
+  .why li strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 760px) {
+    .why { grid-template-columns: 1fr; padding: 28px; }
+    .why .col-block + .col-block { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 24px; }
+  }
+
+  /* PLAN SECTIONS */
+  .plan {
+    padding: 56px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .plan:first-of-type { border-top: none; }
+  .plan.featured {
+    background: linear-gradient(180deg, transparent 0%, var(--bg-cream) 30%, var(--bg-cream) 70%, transparent 100%);
+  }
+
+  .plan-grid {
+    display: grid; grid-template-columns: 360px 1fr; gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .plan-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* PLAN LEFT — label */
+  .plan-label .tag {
+    display: inline-block; font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-deep);
+    background: var(--accent-soft); padding: 5px 12px; border-radius: 100px;
+    margin-bottom: 18px; font-weight: 500;
+  }
+  .plan-label .tag.best {
+    background: var(--accent); color: var(--bg-cream);
+  }
+  .plan-label h2 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 56px);
+    line-height: 1.0; margin: 0 0 14px; letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 72;
+  }
+  .plan-label h2 em { font-style: italic; color: var(--accent); }
+  .plan-label .plan-sub {
+    font-family: var(--sans); font-size: 15px; color: var(--ink-soft);
+    line-height: 1.5; margin: 0 0 24px; max-width: 320px;
+  }
+  .plan-label .why-pick {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em;
+    text-transform: uppercase; color: var(--ink-mute);
+    padding: 12px 0; border-top: 1px solid var(--rule);
+  }
+
+  /* RECEIPT — desglose tipo cuenta */
+  .receipt {
+    background: var(--bg-cream); border: 1px solid var(--rule);
+    border-radius: 16px; padding: 32px 36px;
+    box-shadow: 0 1px 0 rgba(31,27,23,0.04);
+  }
+  .receipt-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 18px; border-bottom: 1px dashed var(--rule);
+    margin-bottom: 18px;
+  }
+  .receipt-head .label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); font-weight: 600;
+  }
+  .receipt-head .users {
+    font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 500;
+  }
+
+  .line {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    padding: 10px 0; align-items: baseline;
+  }
+  .line .desc {
+    font-size: 15px; color: var(--ink);
+  }
+  .line .desc .sub {
+    display: block; font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); margin-top: 2px; letter-spacing: 0.04em;
+  }
+  .line .amount {
+    font-family: var(--serif); font-size: 22px; font-weight: 400;
+    color: var(--ink); font-variation-settings: "opsz" 72;
+    white-space: nowrap;
+  }
+
+  /* línea de descuento — RESALTADA */
+  .line.discount {
+    background: var(--accent-glow); margin: 6px -16px; padding: 12px 16px;
+    border-radius: 8px; border-left: 3px solid var(--accent);
+  }
+  .line.discount .desc { color: var(--accent-deep); font-weight: 500; }
+  .line.discount .desc .sub { color: var(--accent); font-weight: 400; }
+  .line.discount .amount { color: var(--accent-deep); }
+
+  /* línea de mes gratis — RESALTADA */
+  .line.gift {
+    background: var(--gift-soft); margin: 6px -16px; padding: 12px 16px;
+    border-radius: 8px; border-left: 3px solid var(--gift);
+  }
+  .line.gift .desc { color: var(--gift); font-weight: 500; }
+  .line.gift .desc .sub { color: var(--gift); font-weight: 400; opacity: 0.85; }
+  .line.gift .amount {
+    color: var(--gift); font-family: var(--mono); font-size: 13px;
+    font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  .receipt-total {
+    margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    align-items: baseline;
+  }
+  .receipt-total .desc {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); font-weight: 600;
+  }
+  .receipt-total .desc .sub {
+    display: block; font-family: var(--sans); font-size: 13px;
+    color: var(--ink-soft); margin-top: 4px; text-transform: none;
+    letter-spacing: 0; font-weight: 400;
+  }
+  .receipt-total .amount {
+    font-family: var(--serif); font-size: 42px; font-weight: 400;
+    color: var(--ink); line-height: 1; letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72;
+  }
+  .receipt-total .amount .usd {
+    font-family: var(--mono); font-size: 13px; color: var(--ink-mute);
+    margin-left: 6px; font-weight: 400;
+  }
+
+  /* COMPARISON STRIP — por usuario / ahorro */
+  .compare {
+    margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--rule); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--rule);
+  }
+  .compare-cell {
+    background: var(--bg); padding: 18px 22px;
+  }
+  .compare-cell .clabel {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink); font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .compare-cell .cvalue {
+    font-family: var(--serif); font-size: 24px; color: var(--ink);
+    line-height: 1; font-variation-settings: "opsz" 72;
+  }
+  .compare-cell.public .cvalue {
+    color: var(--ink-mute); text-decoration: line-through;
+    text-decoration-color: rgba(31,27,23,0.3);
+  }
+  .compare-cell.with .cvalue { color: var(--accent-deep); font-weight: 500; }
+  .compare-cell .cnote {
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute);
+    margin-top: 6px; letter-spacing: 0.04em;
+  }
+
+  /* REAL MONTHLY COST — translation to real-life monthly outlay */
+  .real-month {
+    margin-top: 20px;
+    background: var(--bg-warm);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .rm-eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .rm-grid {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px;
+    align-items: center;
+  }
+  .rm-formula {
+    font-family: var(--serif); font-size: 18px; color: var(--ink-soft);
+    line-height: 1.3; font-variation-settings: "opsz" 32;
+  }
+  .rm-formula .rm-op { color: var(--ink-mute); margin: 0 4px; }
+  .rm-formula .rm-eq {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+    margin: 0 4px;
+  }
+  .rm-result { text-align: right; }
+  .rm-usd {
+    font-family: var(--serif); font-size: 30px; color: var(--accent-deep);
+    font-weight: 500; line-height: 1; letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72;
+  }
+  .rm-usd .rm-per {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+    font-weight: 400; margin-left: 4px; letter-spacing: 0.04em;
+  }
+  .rm-ars {
+    font-family: var(--mono); font-size: 13px; color: var(--ink-soft);
+    margin-top: 6px; letter-spacing: 0.04em;
+  }
+  @media (max-width: 580px) {
+    .rm-grid { grid-template-columns: 1fr; gap: 14px; }
+    .rm-result { text-align: left; }
+  }
+
+  /* SAVINGS BAR — gran ahorro destacado */
+  .savings {
+    margin-top: 18px;
+    background: var(--bg-deep); color: var(--bg-cream);
+    border-radius: 12px; padding: 22px 26px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .savings .save-label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-soft); opacity: 1;
+    font-weight: 600;
+  }
+  .savings .save-amount {
+    font-family: var(--serif); font-size: 30px; font-weight: 400;
+    line-height: 1; font-variation-settings: "opsz" 72;
+    margin-top: 6px;
+  }
+  .savings .save-amount em {
+    font-style: italic; color: var(--accent-soft);
+  }
+  .savings .save-amount .usd {
+    font-family: var(--mono); font-size: 12px; color: var(--accent-soft);
+    margin-left: 6px; opacity: 0.7;
+  }
+  .savings .save-extra {
+    font-family: var(--sans); font-size: 13px; color: var(--accent-soft);
+    text-align: right; line-height: 1.5; max-width: 220px;
+  }
+  .savings .save-extra strong {
+    display: block; color: var(--bg-cream); font-weight: 500;
+    font-size: 14px; margin-bottom: 2px;
+  }
+
+  /* CLOSING */
+  .closing {
+    margin: 80px auto 100px;
+    text-align: center;
+    max-width: 700px;
+  }
+  .closing h3 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.5vw, 38px);
+    line-height: 1.15; margin: 0 0 14px; letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72;
+  }
+  .closing h3 em { font-style: italic; color: var(--accent); }
+  .closing p {
+    font-size: 16px; color: var(--ink-soft); margin: 0 0 24px;
+  }
+  .closing .note {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em;
+    text-transform: uppercase; color: var(--ink-mute);
+    padding: 16px 24px; background: var(--bg-cream); border-radius: 12px;
+    display: inline-block;
+  }
+
+  /* USER COUNT TOGGLE */
+  .user-toggle-wrap { text-align: center; margin-top: 28px; }
+  .user-toggle {
+    display: inline-flex; gap: 2px; padding: 4px;
+    background: var(--bg-cream); border: 1px solid var(--rule);
+    border-radius: 100px;
+  }
+  .user-toggle button {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 11px 22px;
+    border: none; background: transparent; color: var(--ink-mute);
+    border-radius: 100px; cursor: pointer; font-weight: 500;
+    transition: all .2s; line-height: 1;
+  }
+  .user-toggle button.active {
+    background: var(--accent); color: var(--bg-cream);
+  }
+  .user-toggle button:hover:not(.active) {
+    background: rgba(91,107,71,0.08); color: var(--accent-deep);
+  }
+  .user-toggle button .sub {
+    display: block; font-family: var(--sans); font-size: 9.5px;
+    letter-spacing: 0.06em; opacity: 0.7; margin-top: 3px;
+    text-transform: none;
+  }
+  .user-toggle button.active .sub { opacity: 0.85; }
+
+  /* CSS-driven value swapping based on body[data-users] */
+  body[data-users="7"] [data-u="3"] { display: none; }
+  body[data-users="3"] [data-u="7"] { display: none; }
+
+  /* SACRIFICE BLOCK — only visible in 3-user mode */
+  .sacrifice {
+    max-width: 1100px; margin: 0 auto 64px;
+    background: var(--bg-cream);
+    border: 1px solid var(--gift);
+    border-left: 4px solid var(--gift);
+    border-radius: 14px;
+    padding: 32px 36px;
+    display: none;
+  }
+  body[data-users="3"] .sacrifice { display: block; }
+  .sacrifice .stitle {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gift); font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .sacrifice h3 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 3vw, 30px);
+    line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72; color: var(--ink);
+  }
+  .sacrifice h3 em { font-style: italic; color: var(--gift); }
+  .sacrifice .intro {
+    font-size: 15px; color: var(--ink-soft); margin: 0 0 24px;
+    max-width: 760px; line-height: 1.6;
+  }
+  .sacrifice .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 36px;
+  }
+  .sacrifice .item {
+    border-top: 1px solid var(--rule); padding-top: 14px;
+  }
+  .sacrifice .item h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    color: var(--ink); margin: 0 0 5px; letter-spacing: -0.005em;
+  }
+  .sacrifice .item p {
+    margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;
+  }
+  .sacrifice .reco {
+    margin-top: 26px; padding: 16px 20px;
+    background: rgba(184,137,92,0.10); border-radius: 10px;
+    font-size: 14px; color: var(--ink); line-height: 1.55;
+  }
+  .sacrifice .reco strong { color: var(--gift); }
+  @media (max-width: 720px) {
+    .sacrifice { padding: 24px; }
+    .sacrifice .grid { grid-template-columns: 1fr; }
+  }
+
+  /* TRIAL MECHANIC NOTE */
+  .trial-note {
+    max-width: 1100px; margin: 0 auto 72px;
+    background: var(--bg-cream); border: 1px solid var(--rule);
+    border-left: 3px solid var(--gift); border-radius: 12px;
+    padding: 26px 30px;
+  }
+  .trial-note .te {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gift); margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .trial-note p { margin: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  .trial-note p strong { color: var(--ink); font-weight: 500; }
+
+  /* IMPLEMENTATION SECTION */
+  .impl-intro {
+    padding: 88px 0 28px;
+    border-top: 1px solid var(--rule);
+    margin-top: 56px;
+  }
+  .impl-intro .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent-deep);
+    padding: 6px 14px; background: var(--bg-cream); border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .impl-intro .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .impl-intro h2 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 20px; max-width: 820px;
+    font-variation-settings: "opsz" 72;
+  }
+  .impl-intro h2 em { font-style: italic; color: var(--accent); }
+  .impl-intro .sub {
+    font-size: 17px; color: var(--ink-soft); max-width: 720px; margin: 0;
+  }
+
+  .impl-section { padding: 36px 0 80px; }
+
+  /* phase rows inside the impl receipt */
+  .phase {
+    display: flex; gap: 18px; padding: 16px 0; align-items: flex-start;
+  }
+  .phase + .phase { border-top: 1px dashed var(--rule); }
+  .phase-num {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.10em;
+    color: var(--accent-deep); font-weight: 500;
+    background: var(--accent-soft); padding: 5px 8px;
+    border-radius: 6px; flex-shrink: 0; line-height: 1;
+    text-transform: uppercase; min-width: 38px; text-align: center;
+  }
+  .phase-body { flex: 1; min-width: 0; }
+  .phase-title {
+    font-family: var(--serif); font-size: 19px; line-height: 1.2;
+    color: var(--ink); margin-bottom: 8px; letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 32;
+  }
+  .phase ul { margin: 0; padding-left: 18px; }
+  .phase li {
+    font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .impl-total {
+    margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    align-items: baseline;
+  }
+  .impl-total .desc {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); font-weight: 600;
+  }
+  .impl-total .desc .sub {
+    display: block; font-family: var(--sans); font-size: 13px;
+    color: var(--ink-soft); margin-top: 4px; text-transform: none;
+    letter-spacing: 0; font-weight: 400;
+  }
+  .impl-total .amount {
+    font-family: var(--serif); font-size: 34px; font-weight: 400;
+    color: var(--ink); line-height: 1; letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72;
+  }
+  .impl-total .amount .usd {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+    margin-left: 6px; font-weight: 400;
+  }
+
+  .impl-foot {
+    margin-top: 18px;
+    background: var(--bg-deep); color: var(--bg-cream);
+    border-radius: 12px; padding: 22px 26px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .impl-foot .ifl {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-soft); opacity: 1;
+    font-weight: 600;
+  }
+  .impl-foot .ifv {
+    font-family: var(--serif); font-size: 22px; font-weight: 400;
+    line-height: 1.2; font-variation-settings: "opsz" 72;
+    margin-top: 6px;
+  }
+  .impl-foot .ifv em { font-style: italic; color: var(--accent-soft); }
+  .impl-foot .ifr {
+    font-family: var(--sans); font-size: 13px; color: var(--accent-soft);
+    text-align: right; line-height: 1.5; max-width: 280px;
+  }
+  .impl-foot .ifr strong {
+    display: block; color: var(--bg-cream); font-weight: 500;
+    font-size: 14px; margin-bottom: 2px;
+  }
+
+  /* TERMS — caveat del estimado, tratamiento destacado */
+  .terms {
+    margin-top: 28px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-left: 6px solid var(--accent-deep);
+    border-radius: 14px;
+    padding: 30px 34px;
+    position: relative;
+  }
+  .terms::before {
+    content: "!";
+    position: absolute;
+    top: 26px; left: -22px;
+    width: 36px; height: 36px;
+    background: var(--accent-deep); color: var(--bg-cream);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 22px; font-weight: 500;
+    font-variation-settings: "opsz" 32;
+    box-shadow: 0 4px 12px rgba(63,75,48,0.25);
+  }
+  .terms-section + .terms-section {
+    margin-top: 22px; padding-top: 22px;
+    border-top: 1px dashed var(--rule);
+  }
+  .terms-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent-deep); font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .terms-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2;
+    margin: 0 0 14px; letter-spacing: -0.01em; color: var(--ink);
+    font-variation-settings: "opsz" 72;
+  }
+  .terms-title em { font-style: italic; color: var(--accent-deep); }
+  .terms p {
+    margin: 0 0 12px; font-size: 15.5px; color: var(--ink); line-height: 1.65;
+  }
+  .terms p:last-child { margin-bottom: 0; }
+  .terms p strong { color: var(--accent-deep); font-weight: 600; }
+  @media (max-width: 720px) {
+    .terms { padding: 26px 24px 26px 28px; border-left-width: 4px; }
+    .terms::before { left: -16px; width: 30px; height: 30px; font-size: 18px; }
+  }
+  .banco-example {
+    margin: 14px 0;
+    padding: 14px 18px;
+    background: var(--bg);
+    border-radius: 10px;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.6;
+    border-left: 3px solid var(--accent-soft);
+  }
+  .banco-example strong { color: var(--accent-deep); font-weight: 600; }
+  .banco-example .calc {
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    margin-top: 6px; letter-spacing: 0.02em;
+  }
+
+  /* BANCO DE HORAS — sección full-width, separada del receipt */
+  .banco-section {
+    padding: 24px 0 56px;
+  }
+  .cta-section {
+    padding: 0 0 96px;
+  }
+  .banco-block {
+    background: var(--bg-deep);
+    color: var(--bg-cream);
+    border-radius: 16px;
+    padding: 36px 40px;
+    border: 1px solid var(--bg-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .banco-block::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: linear-gradient(90deg, var(--gift) 0%, var(--accent) 100%);
+  }
+  .banco-header { margin-bottom: 22px; }
+  .banco-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gift); font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .banco-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px); line-height: 1.15;
+    margin: 0; letter-spacing: -0.01em; color: var(--bg-cream);
+    font-variation-settings: "opsz" 72;
+  }
+  .banco-title em { font-style: italic; color: var(--gift); }
+  .banco-body p {
+    font-size: 14.5px; color: rgba(248,244,236,0.78);
+    line-height: 1.65; margin: 0 0 14px;
+  }
+  .banco-body p strong { color: var(--bg-cream); font-weight: 500; }
+  .banco-body p:last-child { margin-bottom: 0; }
+
+  .banco-pillars {
+    margin: 26px 0;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: rgba(248,244,236,0.10);
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid rgba(248,244,236,0.10);
+  }
+  .banco-pillar {
+    background: rgba(248,244,236,0.04);
+    padding: 18px 18px 20px;
+  }
+  .banco-pillar .bp-num {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    color: var(--gift); margin-bottom: 10px; font-weight: 500;
+  }
+  .banco-pillar .bp-title {
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600;
+    color: var(--bg-cream); line-height: 1.3; margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .banco-pillar p {
+    font-size: 12.5px; color: rgba(248,244,236,0.65);
+    line-height: 1.5; margin: 0;
+  }
+  @media (max-width: 980px) {
+    .banco-pillars { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .banco-pillars { grid-template-columns: 1fr; }
+  }
+
+  .banco-practice {
+    margin: 22px 0 18px;
+    background: rgba(184,137,92,0.10);
+    border: 1px solid rgba(184,137,92,0.25);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .banco-practice .bpr-label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gift); font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .banco-practice .bpr-body p {
+    font-size: 14px; color: rgba(248,244,236,0.85); margin: 0 0 10px;
+    line-height: 1.55;
+  }
+  .banco-practice .bpr-body p:last-child { margin-bottom: 0; }
+  .banco-practice .bpr-decision { color: var(--bg-cream) !important; }
+
+  .banco-foot {
+    font-size: 13.5px !important;
+    color: rgba(248,244,236,0.62) !important;
+    font-style: italic;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(248,244,236,0.15);
+    margin-top: 8px !important;
+  }
+  @media (max-width: 720px) {
+    .banco-block { padding: 28px 24px; }
+  }
+
+  /* PREVIEW STAMP */
+  .stamp {
+    position: fixed; top: 18px; right: 18px; z-index: 100;
+    background: var(--bg-deep); color: var(--bg-cream);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 6px 12px; border-radius: 100px;
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body data-users="7">
+
+<div class="stamp">Preview · validar formato</div>
+
+<header class="head">
+  <div class="col-narrow">
+    <span class="eyebrow"><span class="dot"></span>Propuesta · Plan Pro · <span data-u="7">7 usuarios</span><span data-u="3">3 usuarios</span></span>
+    <h1>Kommo CRM <em>al mejor precio</em>, con implementación a medida.</h1>
+    <p class="lede">Contratando la licencia conmigo como partner oficial de Kommo, Jaquemate accede al mejor precio del mercado, una prueba extendida sin pagar y un mes adicional de regalo al final del contrato. Elijan la cantidad de usuarios y el plazo que mejor les cierre.</p>
+    <div class="user-toggle-wrap">
+      <div class="user-toggle" role="tablist">
+        <button type="button" data-set-users="3">3 usuarios<span class="sub">setup mínimo</span></button>
+        <button type="button" data-set-users="7" class="active">7 usuarios<span class="sub">recomendado</span></button>
+      </div>
+      <p style="font-family:var(--mono); font-size:10.5px; letter-spacing:0.10em; text-transform:uppercase; color:var(--ink-mute); margin:18px 0 0;">Conversiones a pesos calculadas al tipo de cambio AR$ 1.400 / USD</p>
+    </div>
+  </div>
+</header>
+
+<section class="col">
+  <div class="why">
+    <div class="col-block">
+      <h3>Si contratan la licencia directo en Kommo</h3>
+      <ul>
+        <li>Pagan el <strong>precio público</strong> de la web</li>
+        <li>Reciben <strong>solo</strong> los meses del plan, sin meses adicionales</li>
+        <li>Cuentan únicamente con la <strong>prueba estándar de 14 días</strong></li>
+        <li>El soporte y los beneficios de partner <strong>no están disponibles</strong></li>
+      </ul>
+    </div>
+    <div class="col-block highlight">
+      <h3>Si contratan la licencia conmigo</h3>
+      <ul>
+        <li><strong>20% de descuento</strong> sobre el precio público</li>
+        <li><strong>Prueba extendida 14 + 14 + 7 días</strong> sin compromiso (35 días, ≈ mes inicial sin pagar)</li>
+        <li><strong>+1 mes extra</strong> de regalo al final por ser socio Kommo</li>
+        <li>Soporte directo con Kommo y activación de beneficios <strong>como partner certificado</strong></li>
+      </ul>
+      <p style="margin: 14px 0 0; font-size: 13px; color: var(--ink-mute); font-style: italic; line-height: 1.5;">La implementación es un trabajo aparte (ver más abajo) y la hago yo en cualquiera de los dos escenarios — no entra en esta comparación.</p>
+    </div>
+  </div>
+</section>
+
+<section class="col">
+  <div class="sacrifice">
+    <div class="stitle">El trade-off de 3 usuarios</div>
+    <h3>Qué <em>se resigna</em> con el setup mínimo</h3>
+    <p class="intro">La idea de 3 usuarios (uno para Tienda, uno para Studio y uno para los dueños) reduce el costo, pero también limita varias capacidades que justifican tener un CRM en primer lugar. Estas son las funciones que se pierden o se debilitan:</p>
+    <div class="grid">
+      <div class="item">
+        <h4>Trazabilidad individual</h4>
+        <p>Si Leandro, Susi, Batty y Bruno comparten el mismo login de "Tienda", el historial muestra "user Tienda hizo X" en lugar de la persona real. Se vuelve imposible saber quién atendió cada lead.</p>
+      </div>
+      <div class="item">
+        <h4>Round robin / distribución automática</h4>
+        <p>Kommo puede balancear leads entrantes entre miembros del mismo equipo. Con un solo usuario por unidad, no hay nadie entre quien balancear — todo cae en el mismo buzón compartido.</p>
+      </div>
+      <div class="item">
+        <h4>Cumplimiento de SLA por agente</h4>
+        <p>Los tiempos de respuesta se miden a nivel cuenta, no por persona. Es más difícil detectar quién acumula carga, quién responde lento o quién necesita refuerzo.</p>
+      </div>
+      <div class="item">
+        <h4>Reglas de asignación granulares</h4>
+        <p>No se pueden definir reglas tipo "los leads de griferías van a Susi, los de vanitorys a Leandro". Todo entra al buzón general y la asignación termina siendo manual.</p>
+      </div>
+      <div class="item">
+        <h4>Reportes de productividad individuales</h4>
+        <p>Imposible medir contribución por persona, comparar performance entre integrantes o premiar al que mejor convierte. El reporte queda a nivel "equipo Tienda".</p>
+      </div>
+      <div class="item">
+        <h4>Auditoría y resolución de disputas</h4>
+        <p>Si un cliente reclama que "le contestaron mal" o "nadie le respondió", el log no permite identificar a la persona — solo al usuario compartido. Más fricción para resolver internamente.</p>
+      </div>
+    </div>
+    <div class="reco">
+      <strong>Recomendación honesta:</strong> el setup de 3 usuarios funciona para arrancar y validar el sistema durante los primeros 3–6 meses. Pasado ese período, escalar a 7 usuarios (uno por persona del equipo de atención) es lo que hace que el CRM realmente devuelva valor en mediciones, asignaciones y crecimiento.
+    </div>
+  </div>
+
+  <div class="trial-note">
+    <div class="te">Cómo funciona la prueba extendida</div>
+    <p>Como partner certificado de Kommo activo una <strong>prueba inicial de 14 días sin costo</strong> y luego la <strong>extiendo en dos tramos más: +14 días y luego +7 días</strong>, totalizando <strong>35 días sin pagar</strong>. Coordinando bien la fecha de alta con el primer cobro de la tarjeta, el primer pago real ocurre cuando ya llevan aproximadamente un mes y medio de uso del sistema — por eso lo contamos como <strong>mes inicial sin pagar</strong>. Sumado al mes extra de socio Kommo al final del contrato, son <strong>2 meses efectivos adicionales</strong> sobre el plan que elijan.</p>
+  </div>
+</section>
+
+<!-- ====================== 6 MESES ====================== -->
+<section class="plan" id="plan-6">
+  <div class="col">
+    <div class="plan-grid">
+      <div class="plan-label">
+        <span class="tag">Plazo corto</span>
+        <h2>6 meses</h2>
+        <p class="plan-sub">Para arrancar y validar el sistema antes de comprometer un plazo largo.</p>
+        <div class="why-pick">Mínimo compromiso · Mayor flexibilidad</div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <span class="label">Plan Pro · 6 meses</span>
+          <span class="users"><span data-u="7">7 usuarios</span><span data-u="3">3 usuarios</span></span>
+        </div>
+
+        <div class="line">
+          <div class="desc">
+            Precio público de Kommo
+            <span class="sub">$45 / usuario / mes × <span data-u="7">7</span><span data-u="3">3</span> × 6 meses</span>
+          </div>
+          <div class="amount"><span data-u="7">$1,890.00</span><span data-u="3">$810.00</span></div>
+        </div>
+
+        <div class="line discount">
+          <div class="desc">
+            Descuento por contratar conmigo
+            <span class="sub">−20% sobre precio público</span>
+          </div>
+          <div class="amount"><span data-u="7">−$378.00</span><span data-u="3">−$162.00</span></div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Prueba extendida 14 + 14 + 7 días
+            <span class="sub">Activada en tres tramos por mí como partner — 35 días sin pagar</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Mes extra de regalo al final
+            <span class="sub">Beneficio socio partner Kommo</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="receipt-total">
+          <div class="desc">
+            Total a pagar
+            <span class="sub">Por 8 meses efectivos (6 contratados + 1 prueba + 1 socio)</span>
+          </div>
+          <div class="amount"><span data-u="7">$1,512</span><span data-u="3">$648</span><span class="usd">USD</span></div>
+        </div>
+
+        <div class="real-month">
+          <div class="rm-eyebrow">Costo real por mes de uso</div>
+          <div class="rm-grid">
+            <div class="rm-formula">
+              <span data-u="7">$1,512</span><span data-u="3">$648</span> USD
+              <span class="rm-op">÷</span>
+              8 meses
+              <span class="rm-eq">=</span>
+            </div>
+            <div class="rm-result">
+              <div class="rm-usd"><span data-u="7">$189.00</span><span data-u="3">$81.00</span><span class="rm-per">USD / mes</span></div>
+              <div class="rm-ars">≈ AR$ <span data-u="7">264.600</span><span data-u="3">113.400</span> / mes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare">
+          <div class="compare-cell public">
+            <div class="clabel">Costo por usuario / mes — público</div>
+            <div class="cvalue">$45.00</div>
+            <div class="cnote">precio directo en kommo.com</div>
+          </div>
+          <div class="compare-cell with">
+            <div class="clabel">Costo por usuario / mes — con nosotros</div>
+            <div class="cvalue">$27.00</div>
+            <div class="cnote"><span data-u="7">$1,512 ÷ 7 usuarios ÷ 8 meses</span><span data-u="3">$648 ÷ 3 usuarios ÷ 8 meses</span></div>
+          </div>
+        </div>
+
+        <div class="savings">
+          <div>
+            <div class="save-label">Su ahorro total</div>
+            <div class="save-amount"><em><span data-u="7">$378</span><span data-u="3">$162</span></em><span class="usd">USD</span> + 2 meses</div>
+          </div>
+          <div class="save-extra">
+            <strong>40% menos por usuario</strong>
+            que comprando directo en kommo.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 9 MESES ====================== -->
+<section class="plan" id="plan-9">
+  <div class="col">
+    <div class="plan-grid">
+      <div class="plan-label">
+        <span class="tag">Punto medio</span>
+        <h2>9 meses</h2>
+        <p class="plan-sub">Plazo intermedio: ya empieza a notarse el descuento por volumen de Kommo.</p>
+        <div class="why-pick">Buen balance compromiso / ahorro</div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <span class="label">Plan Pro · 9 meses</span>
+          <span class="users"><span data-u="7">7 usuarios</span><span data-u="3">3 usuarios</span></span>
+        </div>
+
+        <div class="line">
+          <div class="desc">
+            Precio público de Kommo
+            <span class="sub">$40 / usuario / mes × <span data-u="7">7</span><span data-u="3">3</span> × 9 meses</span>
+          </div>
+          <div class="amount"><span data-u="7">$2,520.00</span><span data-u="3">$1,080.00</span></div>
+        </div>
+
+        <div class="line discount">
+          <div class="desc">
+            Descuento por contratar conmigo
+            <span class="sub">−20% sobre precio público</span>
+          </div>
+          <div class="amount"><span data-u="7">−$504.00</span><span data-u="3">−$216.00</span></div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Prueba extendida 14 + 14 + 7 días
+            <span class="sub">Activada en tres tramos por mí como partner — 35 días sin pagar</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Mes extra de regalo al final
+            <span class="sub">Beneficio socio partner Kommo</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="receipt-total">
+          <div class="desc">
+            Total a pagar
+            <span class="sub">Por 11 meses efectivos (9 contratados + 1 prueba + 1 socio)</span>
+          </div>
+          <div class="amount"><span data-u="7">$2,016</span><span data-u="3">$864</span><span class="usd">USD</span></div>
+        </div>
+
+        <div class="real-month">
+          <div class="rm-eyebrow">Costo real por mes de uso</div>
+          <div class="rm-grid">
+            <div class="rm-formula">
+              <span data-u="7">$2,016</span><span data-u="3">$864</span> USD
+              <span class="rm-op">÷</span>
+              11 meses
+              <span class="rm-eq">=</span>
+            </div>
+            <div class="rm-result">
+              <div class="rm-usd"><span data-u="7">$183.27</span><span data-u="3">$78.55</span><span class="rm-per">USD / mes</span></div>
+              <div class="rm-ars">≈ AR$ <span data-u="7">256.580</span><span data-u="3">109.960</span> / mes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare">
+          <div class="compare-cell public">
+            <div class="clabel">Costo por usuario / mes — público</div>
+            <div class="cvalue">$40.00</div>
+            <div class="cnote">precio directo en kommo.com</div>
+          </div>
+          <div class="compare-cell with">
+            <div class="clabel">Costo por usuario / mes — con nosotros</div>
+            <div class="cvalue">$26.18</div>
+            <div class="cnote"><span data-u="7">$2,016 ÷ 7 usuarios ÷ 11 meses</span><span data-u="3">$864 ÷ 3 usuarios ÷ 11 meses</span></div>
+          </div>
+        </div>
+
+        <div class="savings">
+          <div>
+            <div class="save-label">Su ahorro total</div>
+            <div class="save-amount"><em><span data-u="7">$504</span><span data-u="3">$216</span></em><span class="usd">USD</span> + 2 meses</div>
+          </div>
+          <div class="save-extra">
+            <strong>35% menos por usuario</strong>
+            que comprando directo en kommo.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 12 MESES — FEATURED ====================== -->
+<section class="plan featured" id="plan-12">
+  <div class="col">
+    <div class="plan-grid">
+      <div class="plan-label">
+        <span class="tag best">★ Recomendado</span>
+        <h2>12 <em>meses</em></h2>
+        <p class="plan-sub">El sweet spot: año completo, descuento sustancial y compromiso razonable.</p>
+        <div class="why-pick">Mejor equilibrio plazo / descuento</div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <span class="label">Plan Pro · 12 meses</span>
+          <span class="users"><span data-u="7">7 usuarios</span><span data-u="3">3 usuarios</span></span>
+        </div>
+
+        <div class="line">
+          <div class="desc">
+            Precio público de Kommo
+            <span class="sub">$37.50 / usuario / mes × <span data-u="7">7</span><span data-u="3">3</span> × 12 meses</span>
+          </div>
+          <div class="amount"><span data-u="7">$3,150.00</span><span data-u="3">$1,350.00</span></div>
+        </div>
+
+        <div class="line discount">
+          <div class="desc">
+            Descuento por contratar conmigo
+            <span class="sub">−20% sobre precio público</span>
+          </div>
+          <div class="amount"><span data-u="7">−$630.00</span><span data-u="3">−$270.00</span></div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Prueba extendida 14 + 14 + 7 días
+            <span class="sub">Activada en tres tramos por mí como partner — 35 días sin pagar</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Mes extra de regalo al final
+            <span class="sub">Beneficio socio partner Kommo</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="receipt-total">
+          <div class="desc">
+            Total a pagar
+            <span class="sub">Por 14 meses efectivos (12 contratados + 1 prueba + 1 socio)</span>
+          </div>
+          <div class="amount"><span data-u="7">$2,520</span><span data-u="3">$1,080</span><span class="usd">USD</span></div>
+        </div>
+
+        <div class="real-month">
+          <div class="rm-eyebrow">Costo real por mes de uso</div>
+          <div class="rm-grid">
+            <div class="rm-formula">
+              <span data-u="7">$2,520</span><span data-u="3">$1,080</span> USD
+              <span class="rm-op">÷</span>
+              14 meses
+              <span class="rm-eq">=</span>
+            </div>
+            <div class="rm-result">
+              <div class="rm-usd"><span data-u="7">$180.00</span><span data-u="3">$77.14</span><span class="rm-per">USD / mes</span></div>
+              <div class="rm-ars">≈ AR$ <span data-u="7">252.000</span><span data-u="3">108.000</span> / mes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare">
+          <div class="compare-cell public">
+            <div class="clabel">Costo por usuario / mes — público</div>
+            <div class="cvalue">$37.50</div>
+            <div class="cnote">precio directo en kommo.com</div>
+          </div>
+          <div class="compare-cell with">
+            <div class="clabel">Costo por usuario / mes — con nosotros</div>
+            <div class="cvalue">$25.71</div>
+            <div class="cnote"><span data-u="7">$2,520 ÷ 7 usuarios ÷ 14 meses</span><span data-u="3">$1,080 ÷ 3 usuarios ÷ 14 meses</span></div>
+          </div>
+        </div>
+
+        <div class="savings">
+          <div>
+            <div class="save-label">Su ahorro total</div>
+            <div class="save-amount"><em><span data-u="7">$630</span><span data-u="3">$270</span></em><span class="usd">USD</span> + 2 meses</div>
+          </div>
+          <div class="save-extra">
+            <strong>31% menos por usuario</strong>
+            que comprando directo en kommo.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 24 MESES ====================== -->
+<section class="plan" id="plan-24">
+  <div class="col">
+    <div class="plan-grid">
+      <div class="plan-label">
+        <span class="tag best">Máximo ahorro</span>
+        <h2>24 <em>meses</em></h2>
+        <p class="plan-sub">Compromiso largo, precio más bajo posible. Para equipos que ya saben que el CRM se queda.</p>
+        <div class="why-pick">Mejor precio por usuario · Plazo largo</div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <span class="label">Plan Pro · 24 meses</span>
+          <span class="users"><span data-u="7">7 usuarios</span><span data-u="3">3 usuarios</span></span>
+        </div>
+
+        <div class="line">
+          <div class="desc">
+            Precio público de Kommo
+            <span class="sub">$33.75 / usuario / mes × <span data-u="7">7</span><span data-u="3">3</span> × 24 meses</span>
+          </div>
+          <div class="amount"><span data-u="7">$5,670.00</span><span data-u="3">$2,430.00</span></div>
+        </div>
+
+        <div class="line discount">
+          <div class="desc">
+            Descuento por contratar conmigo
+            <span class="sub">−20% sobre precio público</span>
+          </div>
+          <div class="amount"><span data-u="7">−$1,134.00</span><span data-u="3">−$486.00</span></div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Prueba extendida 14 + 14 + 7 días
+            <span class="sub">Activada en tres tramos por mí como partner — 35 días sin pagar</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="line gift">
+          <div class="desc">
+            Mes extra de regalo al final
+            <span class="sub">Beneficio socio partner Kommo</span>
+          </div>
+          <div class="amount">+1 mes</div>
+        </div>
+
+        <div class="receipt-total">
+          <div class="desc">
+            Total a pagar
+            <span class="sub">Por 26 meses efectivos (24 contratados + 1 prueba + 1 socio)</span>
+          </div>
+          <div class="amount"><span data-u="7">$4,536</span><span data-u="3">$1,944</span><span class="usd">USD</span></div>
+        </div>
+
+        <div class="real-month">
+          <div class="rm-eyebrow">Costo real por mes de uso</div>
+          <div class="rm-grid">
+            <div class="rm-formula">
+              <span data-u="7">$4,536</span><span data-u="3">$1,944</span> USD
+              <span class="rm-op">÷</span>
+              26 meses
+              <span class="rm-eq">=</span>
+            </div>
+            <div class="rm-result">
+              <div class="rm-usd"><span data-u="7">$174.46</span><span data-u="3">$74.77</span><span class="rm-per">USD / mes</span></div>
+              <div class="rm-ars">≈ AR$ <span data-u="7">244.250</span><span data-u="3">104.680</span> / mes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare">
+          <div class="compare-cell public">
+            <div class="clabel">Costo por usuario / mes — público</div>
+            <div class="cvalue">$33.75</div>
+            <div class="cnote">precio directo en kommo.com</div>
+          </div>
+          <div class="compare-cell with">
+            <div class="clabel">Costo por usuario / mes — con nosotros</div>
+            <div class="cvalue">$24.92</div>
+            <div class="cnote"><span data-u="7">$4,536 ÷ 7 usuarios ÷ 26 meses</span><span data-u="3">$1,944 ÷ 3 usuarios ÷ 26 meses</span></div>
+          </div>
+        </div>
+
+        <div class="savings">
+          <div>
+            <div class="save-label">Su ahorro total</div>
+            <div class="save-amount"><em><span data-u="7">$1,134</span><span data-u="3">$486</span></em><span class="usd">USD</span> + 2 meses</div>
+          </div>
+          <div class="save-extra">
+            <strong>26% menos por usuario</strong>
+            que comprando directo en kommo.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== IMPLEMENTACIÓN ====================== -->
+<section class="impl-intro">
+  <div class="col">
+    <span class="eyebrow"><span class="dot"></span>Fase 2 · Trabajos de implementación</span>
+    <h2>La licencia es la herramienta. <em>La implementación</em> es lo que hace que el CRM funcione.</h2>
+    <p class="sub">Un CRM sin pipelines bien diseñados, sin base de conocimiento y sin agentes correctamente entrenados se abandona en tres meses. La <strong>implementación Full</strong> cubre desde la exploración inicial hasta tres meses de soporte post go-live — todo lo necesario para que el sistema se adopte y siga funcionando solo.</p>
+  </div>
+</section>
+
+<section class="impl-section" id="implementacion">
+  <div class="col">
+    <div class="plan-grid">
+      <div class="plan-label">
+        <span class="tag best">Implementación Full</span>
+        <h2>Implementación <em>completa</em></h2>
+        <p class="plan-sub">Siete fases desde la exploración inicial hasta tres meses de soporte post go-live. Estimado en 175 horas a AR$ 20.000/hora. Las horas reales se registran durante el proyecto y se las comparto en vivo.</p>
+        <div class="why-pick">Estimado: 175h · AR$ 3.5M · USD 2.500</div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <span class="label">Implementación Full · por hora</span>
+          <span class="users">7 fases</span>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">01</div>
+          <div class="phase-body">
+            <div class="phase-title">Exploración inicial</div>
+            <ul>
+              <li>Diseño y despliegue de un <strong>agente exploratorio</strong> que entrevista a cada miembro del equipo (atención, ventas, derivación) con un cuestionario estructurado</li>
+              <li>Recolección de información sobre procedimientos, métodos de trabajo y casos tipo de cada persona</li>
+              <li>Exportación manual de chats representativos (WhatsApp, redes, mail) seleccionados con criterio</li>
+              <li>Reuniones de indagación directa con ustedes y el equipo sobre procesos no documentados</li>
+              <li>Consolidación de todo en una <strong>estructura inicial pre-armada</strong>, materia prima del resto del proyecto — sin esto la implementación se apoya en suposiciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">02</div>
+          <div class="phase-body">
+            <div class="phase-title">Análisis y diseño de funnels</div>
+            <ul>
+              <li>Análisis profundo de las estructuras de conversaciones recabadas en Fase 1</li>
+              <li>Tipificación de conversaciones (consultas frecuentes, derivaciones, leads)</li>
+              <li>Mapeo de etapas del journey por unidad de negocio</li>
+              <li>Estructuras de funnels de venta por unidad (Tienda, Studio, Obras)</li>
+              <li>Definición de activadores, desencadenantes y acciones automáticas</li>
+              <li>Reglas de asignación de leads al miembro correcto del equipo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">03</div>
+          <div class="phase-body">
+            <div class="phase-title">Base de conocimiento (KB)</div>
+            <ul>
+              <li>Compilación de conocimientos estructurales sobre Jaquemate</li>
+              <li>Procedimientos internos documentados</li>
+              <li>Tono de voz, respuestas tipo y FAQs</li>
+              <li>Material que va a entrenar al agente IA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">04</div>
+          <div class="phase-body">
+            <div class="phase-title">Diseño del agente IA — múltiples agentes especializados</div>
+            <ul>
+              <li><strong>Un agente diferenciado por unidad de negocio</strong> (Tienda, Studio, Obras, admin) — cada uno con tono, criterios y alcance propios</li>
+              <li>Criterios de derivación entre agentes y hacia humanos (a quién atiende cada uno y bajo qué reglas)</li>
+              <li>Prompteo iterativo de límites, alcance y acciones permitidas por agente</li>
+              <li>Mecanismos de handoff entre agentes (cuando un caso cambia de unidad)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">05</div>
+          <div class="phase-body">
+            <div class="phase-title">Integración con herramientas de terceros</div>
+            <ul>
+              <li>Estructuras de soporte y handoff a humanos</li>
+              <li>WhatsApp Business API (canal principal)</li>
+              <li>Tiendanube (sincronización de pedidos y clientes B2C Tienda)</li>
+              <li><strong>Instagram DM</strong> (canal de leads frecuente, hoy en silo)</li>
+              <li><strong>Mail / Gmail</strong> (unifica consultas que llegan por mail al mismo CRM)</li>
+              <li><strong>Calendario / Calendly</strong> (auto-agendamiento Studio y reuniones B2B)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">06</div>
+          <div class="phase-body">
+            <div class="phase-title">Entrenamiento, testeo, capacitación y go-live</div>
+            <ul>
+              <li>Entrenamiento de cada agente con su porción de la base de conocimiento</li>
+              <li>Testeo de flujos reales antes de salir a producción</li>
+              <li><strong>Capacitación grupal del equipo</strong> + sesiones 1:1 con cada persona (Leandro, Susi, Batty, Bruno, Nehuén, Abril, Leo)</li>
+              <li>Puesta en producción y monitoreo inicial</li>
+              <li>Ajustes post-lanzamiento de la primera semana</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">07</div>
+          <div class="phase-body">
+            <div class="phase-title">Soporte post go-live + documentación (3 meses)</div>
+            <ul>
+              <li><strong>Soporte continuo durante 3 meses</strong> después del lanzamiento</li>
+              <li>Iteración de prompts con feedback de uso real (los casos no previstos aparecen acá)</li>
+              <li>Retraining de cada agente con casos reales que no salieron en la exploración</li>
+              <li><strong>Documentación y playbooks por unidad</strong> — el equipo se queda con sus manuales propios</li>
+              <li>Check-ins mensuales con reporte de uso, casos atendidos y ajustes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="line" style="margin-top: 22px;">
+          <div class="desc">
+            Horas estimadas — alcance Full
+            <span class="sub">7 fases · de la exploración inicial al soporte post go-live</span>
+          </div>
+          <div class="amount">175 hs</div>
+        </div>
+
+        <div class="line">
+          <div class="desc">
+            Tarifa hora
+            <span class="sub">Tarifa que les comuniqué</span>
+          </div>
+          <div class="amount">AR$ 20.000</div>
+        </div>
+
+        <div class="impl-total">
+          <div class="desc">
+            Total estimado
+            <span class="sub">175 hs × AR$ 20.000 / hora</span>
+          </div>
+          <div class="amount">AR$ 3.500.000</div>
+        </div>
+
+        <div class="real-month">
+          <div class="rm-eyebrow">Equivalente en dólares</div>
+          <div class="rm-grid">
+            <div class="rm-formula">
+              AR$ 3.500.000
+              <span class="rm-op">÷</span>
+              AR$ 1.400 / USD
+              <span class="rm-eq">=</span>
+            </div>
+            <div class="rm-result">
+              <div class="rm-usd">USD 2.500<span class="rm-per">total estimado</span></div>
+              <div class="rm-ars">≈ valor de la licencia de 12 meses (USD 2.520)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terms">
+          <div class="terms-section">
+            <div class="terms-eyebrow">Importante · cómo leer el estimado</div>
+            <h4 class="terms-title">El estimado es <em>referencia</em>, no precio cerrado.</h4>
+            <p>Las <strong>175 horas</strong> reflejan un alcance Full estándar — sirven para que vean la magnitud y la inversión. Las horas reales pueden variar:</p>
+            <p>Si una fase resulta más rápida, pagan menos. Si algo requiere más iteración (por ejemplo, casos de uso que aparecen en testeo y no salieron en la exploración), les aviso antes de seguir y lo decidimos juntos. <strong>El avance de horas reales contra el estimado lo ven en vivo durante todo el proyecto.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== BANCOS DE HORAS — bloque full-width separado ====================== -->
+<section class="banco-section" id="bancos-de-horas">
+  <div class="col">
+    <div class="banco-block">
+      <div class="banco-header">
+        <div class="banco-eyebrow">Modalidad de trabajo y pago</div>
+        <h3 class="banco-title">Bancos de horas — <em>sin pago por adelantado, sin tope rígido</em></h3>
+      </div>
+      <div class="banco-body">
+        <p>Para que la implementación arranque sin esperar ningún desembolso, les propongo trabajar con <strong>bancos de horas trabajadas</strong>: yo arranco el trabajo de inmediato y voy <strong>registrando cada hora a medida que la ejecuto</strong>. Esas horas se van acumulando en un banco a su nombre — un saldo vivo, transparente, que ustedes pueden consultar cuando quieran.</p>
+        <p>El pago no se ata a un bloque cerrado por adelantado. <strong>Ustedes deciden cuándo y cuánto saldar del banco acumulado</strong>: pueden pagar mensualmente, contra hito, o como les funcione mejor en cada momento. Si en algún momento el saldo pendiente de pago se vuelve significativo, lo conversamos y acordamos un ritmo — pero no hay un cronograma de cuotas obligatorio.</p>
+
+        <div class="banco-pillars">
+          <div class="banco-pillar">
+            <div class="bp-num">01</div>
+            <div class="bp-title">No hay limitación inicial</div>
+            <p>El trabajo no espera a que se apruebe un presupuesto cerrado ni a que entre un primer pago. Empezamos cuando lo definimos.</p>
+          </div>
+          <div class="banco-pillar">
+            <div class="bp-num">02</div>
+            <div class="bp-title">Pagan solo lo trabajado</div>
+            <p>Nunca pagan horas que todavía no se ejecutaron. El saldo refleja trabajo real entregado, no una promesa.</p>
+          </div>
+          <div class="banco-pillar">
+            <div class="bp-num">03</div>
+            <div class="bp-title">Visibilidad permanente</div>
+            <p>El registro se actualiza en vivo: cuántas horas se trabajaron, en qué fase, cuánto está saldado y cuánto pendiente.</p>
+          </div>
+          <div class="banco-pillar">
+            <div class="bp-num">04</div>
+            <div class="bp-title">Cashflow definido por ustedes</div>
+            <p>Eligen el ritmo de pago que mejor les acomode, no uno impuesto por la propuesta.</p>
+          </div>
+          <div class="banco-pillar">
+            <div class="bp-num">05</div>
+            <div class="bp-title">Control de avance compartido</div>
+            <p>Si en algún momento quieren bajar el ritmo, pausar o redirigir esfuerzo, lo conversamos antes de seguir acumulando horas.</p>
+          </div>
+        </div>
+
+        <div class="banco-practice">
+          <div class="bpr-label">Cómo se ve en la práctica</div>
+          <div class="bpr-body">
+            <p>Primer mes trabajo ~25 horas (Fase 1 + arranque de Fase 2). En el banco quedan registradas <strong>25 hs × AR$ 20.000 = AR$ 500.000</strong> a su nombre.</p>
+            <p class="bpr-decision"><strong>Ustedes deciden:</strong> saldar las AR$ 500.000 completas, saldar AR$ 250.000 y dejar el resto pendiente, o esperar al mes siguiente y acumular contra el próximo bloque trabajado.</p>
+          </div>
+        </div>
+
+        <p class="banco-foot">El estimado total sigue siendo el mismo (175 horas / AR$ 3.500.000) y cada hora trabajada se registra contra ese estimado para que vean cuánto del alcance Full ya se cubrió. Pero el <strong>cuándo</strong> y el <strong>cuánto</strong> del pago lo manejan ustedes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PRÓXIMO PASO ====================== -->
+<section class="cta-section">
+  <div class="col">
+    <div class="impl-foot">
+      <div>
+        <div class="ifl">Próximo paso</div>
+        <div class="ifv"><em>Reunión de scoping</em> · 30 min</div>
+      </div>
+      <div class="ifr">
+        <strong>Sin compromiso</strong>
+        Revisamos el alcance final, ajustamos el estimado por fase y arrancamos el plan de trabajo. Durante el proyecto van a ver el avance de horas reales contra el estimado.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var body = document.body;
+    var buttons = document.querySelectorAll('.user-toggle button');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var n = btn.getAttribute('data-set-users');
+        body.setAttribute('data-users', n);
+        buttons.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
